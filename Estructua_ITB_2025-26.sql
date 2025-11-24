@@ -1,14 +1,14 @@
 -- Crear base de datos
-CREATE DATABASE DAWe1;
+CREATE DATABASE dawe1;
 
 -- Crear usuario
-CREATE USER usuarioitb WITH SUPERUSER CREATEROLE ENCRYPTED PASSWORD 'usuarioitb';
+CREATE USER dawe1 WITH SUPERUSER CREATEROLE ENCRYPTED PASSWORD 'dawe1';
 
 -- Asignar propietario
-ALTER DATABASE itb OWNER TO usuarioitb;
+ALTER DATABASE dawe1 OWNER TO dawe1;
 
 -- Permisos
-GRANT ALL PRIVILEGES ON DATABASE itb TO usuarioitb;
+GRANT ALL PRIVILEGES ON dawe1 itb TO dawe1;
 
 CREATE TABLE Grup (
     Nom VARCHAR(5) NOT NULL,
@@ -17,11 +17,14 @@ CREATE TABLE Grup (
     CONSTRAINT ck_aula CHECK (Aula > 0)
 );
 
+
 CREATE TABLE Modul (
     Codi VARCHAR(10) NOT NULL,
     Nom VARCHAR(60) NOT NULL,
     CONSTRAINT pk_modul PRIMARY KEY (Codi)
 );
+
+
 
 CREATE TABLE Docent (
     Codi NUMERIC(3) NOT NULL,
@@ -33,6 +36,7 @@ CREATE TABLE Docent (
     CONSTRAINT ck_experiencia CHECK (Experiencia >= 0),
     CONSTRAINT uq_docent_email UNIQUE (Email_itb)
 );
+
 
 CREATE TABLE Alumne (
     Codi NUMERIC(2) NOT NULL,
@@ -48,6 +52,8 @@ CREATE TABLE Alumne (
     CONSTRAINT fk_alumne_grup FOREIGN KEY (Grup) REFERENCES Grup(Nom)
 );
 
+
+
 CREATE TABLE Ensenya (
     Codi_docent NUMERIC(3) NOT NULL,
     Codi_modul VARCHAR(10) NOT NULL,
@@ -58,6 +64,7 @@ CREATE TABLE Ensenya (
     CONSTRAINT fk_ensenya_grup FOREIGN KEY (Grup) REFERENCES Grup(Nom)
 );
 
+
 CREATE TABLE Activitat (
     Codi VARCHAR(5) NOT NULL,
     Nom VARCHAR(20) NOT NULL,
@@ -65,12 +72,16 @@ CREATE TABLE Activitat (
     CONSTRAINT pk_activitat PRIMARY KEY (Codi)
 );
 
+
+
 CREATE TABLE Preferencia (
     Codi VARCHAR(5) NOT NULL,
     Nom VARCHAR(20) NOT NULL,
     Descripcio VARCHAR(20),
     CONSTRAINT pk_preferencia PRIMARY KEY (Codi)
 );
+
+
 
 CREATE TABLE Realitza (
     Codi_Al NUMERIC(2) NOT NULL,
@@ -81,6 +92,8 @@ CREATE TABLE Realitza (
     CONSTRAINT fk_realitza_activitat FOREIGN KEY (Codi_Act) REFERENCES Activitat(Codi),
     CONSTRAINT ck_realitza_hores CHECK (Hores >= 0)
 );
+
+
 
 CREATE TABLE Agrada (
     Codi_Al NUMERIC(2) NOT NULL,
