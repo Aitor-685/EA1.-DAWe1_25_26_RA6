@@ -1,5 +1,5 @@
 -- Crear base de datos
-CREATE DATABASE itb;
+CREATE DATABASE DAWe1;
 
 -- Crear usuario
 CREATE USER usuarioitb WITH SUPERUSER CREATEROLE ENCRYPTED PASSWORD 'usuarioitb';
